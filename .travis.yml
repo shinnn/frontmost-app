@@ -1,0 +1,12 @@
+os: osx
+osx_image: xcode10
+branches:
+  except: /^v\d/
+language: node_js
+node_js: node
+script: npx eslint . && nyc node test.js
+after_script: node_modules/.bin/nyc report --reporter=text-lcov | npx coveralls
+env:
+  global:
+    - COVERALLS_SERVICE_NAME=travis-pro
+    - secure: dYqjd7mo2cYBoo3QIRW19oc2ccUXWVH6cT/9OGV82NXLltWleFdqxoxNYyIqHPAWt14lg4p3E8fTx8OpRgBUv8kHrajBQxOGxkWAs/AuphBiLO7AtG9hXnaxVBdJMgXQSjgrIYV2oKSvFUrw7SLkSW1WQSUvZdGSRrKqlkzYbAE/85/nMdiO7CE5OAz5QW85ct90D+0QVwQtAgCghHYBRFUwsVJX+F25aftw67ooUbO7D3yB6h6JuBrM158/R21FIzD804vnYZq4cc+TQ/jQTGwIg3mNazG1J46DRvbCSCGNSkwFZ/IDhPHLLlBpjm1/PLszmcHBEhAmeLW2AqKdFFRMBxyL9DGlrZgScuXv317YqKq81U+lZcYo8/q7j2efkfoIyhOwZkIB94LlejtR4ADZt3VIJ9sHAdGQknsncEGHL/OyArAZlEvv0LSIt1XN1vMQBgktQOwzBlwXd19QoOIXRyxGB6g3/1en7c39xk7O/DX9+wxQx8IJ67kQH8ALIKDBV4ZLKwaXQedSDwuJfDQ6r1KTpGw3MvqQCzFnYYY7CY2PIeVNDyamFSY8Wyry+taA13z+mbVgWR5GBTy++FZ+Av+e/5mlPVk9/TwLREHqzlU/TkhuKDHrEd7IWqZjdtwlfzSTVv2/igdEGiJ2sMK8CEQAAgvgJV+ji1Xqcjk=
