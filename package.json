@@ -27,9 +27,8 @@
 		"async"
 	],
 	"dependencies": {
-		"pify": "^2.3.0",
-		"pinkie-promise": "^2.0.1",
-		"platform-name": "^0.2.0"
+		"pify": "^3.0.0",
+		"platform-name": "^0.6.1"
 	},
 	"devDependencies": {
 		"@shinnn/eslint-config-node": "^6.0.0",
@@ -42,10 +41,6 @@
 		"tape": "^4.9.1"
 	},
 	"eslintConfig": {
-		"extends": "@shinnn/node",
-		"rules": {
-			"no-var": "off",
-			"prefer-template": "off"
-		}
+		"extends": "@shinnn/node"
 	}
 }
