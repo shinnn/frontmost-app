@@ -1,7 +1,7 @@
 'use strict';
 
 if (process.platform === 'darwin') {
-	const execFile = require('child_process').execFile;
+	const {execFile} = require('child_process');
 
 	const pify = require('pify');
 
@@ -10,17 +10,25 @@ if (process.platform === 'darwin') {
 
 	const promisifiedExecFile = pify(execFile);
 
-	module.exports = function frontmostApp() {
-		return promisifiedExecFile(binPath, option).then(function handle(stdout) { // eslint-disable-line promise/prefer-await-to-then
-			const arr = stdout.split('\u0007');
+	module.exports = function frontmostApp(...args) {
+		const argLen = args.length;
+
+		if (argLen !== 0) {
+			return Promise.reject(new RangeError(`Expected no arguments, but got ${argLen} argument${
+				argLen === 1 ? '' : 's'
+			}.`));
+		}
+
+		return promisifiedExecFile(binPath, option).then(stdout => { // eslint-disable-line promise/prefer-await-to-then
+			const [localizedName, bundleId, bundlePath, executablePath, isLaunched, pid] = stdout.split('\x07');
 
 			return {
-				localizedName: arr[0],
-				bundleId: arr[1],
-				bundlePath: arr[2],
-				executablePath: arr[3],
-				isLaunched: !!arr[4],
-				pid: parseInt(arr[5], 10)
+				localizedName,
+				bundleId,
+				bundlePath,
+				executablePath,
+				isLaunched: !!isLaunched,
+				pid: parseInt(pid, 10)
 			};
 		});
 	};
@@ -30,9 +38,9 @@ if (process.platform === 'darwin') {
 		enumerable: true
 	});
 } else {
-	module.exports = function getChromeTabs() {
-		const platformName = require('platform-name');
+	const platformName = require('platform-name');
 
+	module.exports = function frontmostApp() {
 		const error = new Error(`frontmost-app only supports macOS, but the current platform is ${platformName()}.`);
 		error.code = 'ERR_UNSUPPORTED_PLATFORM';
 

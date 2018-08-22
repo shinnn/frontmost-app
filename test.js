@@ -51,6 +51,28 @@ test('frontmostApp()', async t => {
 
 	await browser.close();
 
+	try {
+		await frontmostApp(0);
+		t.fail('Unexpectedly succeeded.');
+	} catch (err) {
+		t.equal(
+			err.toString(),
+			'RangeError: Expected no arguments, but got 1 argument.',
+			'should fail when it takes an argument.'
+		);
+	}
+
+	try {
+		await frontmostApp(0, 1);
+		t.fail('Unexpectedly succeeded.');
+	} catch (err) {
+		t.equal(
+			err.toString(),
+			'RangeError: Expected no arguments, but got 2 arguments.',
+			'should fail when it takes arguments.'
+		);
+	}
+
 	t.end();
 });
 
