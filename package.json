@@ -1,6 +1,6 @@
 {
 	"name": "frontmost-app",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Get information of the frontmost app – the app that receives key events",
 	"repository": "shinnn/frontmost-app",
 	"author": "Shinnosuke Watanabe (https://github.com/shinnn)",
@@ -28,7 +28,7 @@
 	],
 	"dependencies": {
 		"pify": "^3.0.0",
-		"platform-name": "^0.6.1"
+		"platform-name": "^1.0.0"
 	},
 	"devDependencies": {
 		"@shinnn/eslint-config-node": "^6.0.0",
