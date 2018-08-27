@@ -2,12 +2,11 @@
 
 if (process.platform === 'darwin') {
 	const {execFile} = require('child_process');
-
-	const pify = require('pify');
+	const {promisify} = require('util');
 
 	const binPath = require.resolve('./frontmost-app');
 	const option = {timeout: 2000};
-	const promisifiedExecFile = pify(execFile);
+	const promisifiedExecFile = promisify(execFile);
 
 	module.exports = async function frontmostApp(...args) {
 		const argLen = args.length;
@@ -18,8 +17,14 @@ if (process.platform === 'darwin') {
 			}.`);
 		}
 
-		const properites = (await promisifiedExecFile(binPath, option)).split('\x07');
-		const [localizedName, bundleId, bundlePath, executablePath, isLaunched, pid] = properites;
+		const [
+			localizedName,
+			bundleId,
+			bundlePath,
+			executablePath,
+			isLaunched,
+			pid
+		] = (await promisifiedExecFile(binPath, option)).stdout.split('\x07');
 
 		return {
 			localizedName,

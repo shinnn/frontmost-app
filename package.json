@@ -27,7 +27,6 @@
 		"async"
 	],
 	"dependencies": {
-		"pify": "^3.0.0",
 		"platform-name": "^1.0.0"
 	},
 	"devDependencies": {
