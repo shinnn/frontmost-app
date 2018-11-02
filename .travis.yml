@@ -5,7 +5,7 @@ branches:
 language: node_js
 node_js: node
 script: npx eslint . && nyc node test.js
-after_script: node_modules/.bin/nyc report --reporter=text-lcov | npx coveralls
+after_script: node_modules/.bin/nyc report | npx coveralls
 env:
   global:
     - COVERALLS_SERVICE_NAME=travis-pro

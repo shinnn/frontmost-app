@@ -9,7 +9,7 @@
 		"prebuild": "eslint .",
 		"build": "clang -o frontmost-app -Os -framework AppKit frontmost-app.m",
 		"pretest": "npm run-script build",
-		"test": "nyc --reporter=html --reporter=text node test.js"
+		"test": "nyc node test.js"
 	},
 	"files": [
 		"frontmost-app",
@@ -30,16 +30,20 @@
 		"platform-name": "^1.0.0"
 	},
 	"devDependencies": {
-		"@shinnn/eslint-config-node": "^6.0.0",
+		"@shinnn/eslint-config": "^6.8.0",
 		"clear-module": "^3.0.0",
-		"eslint": "^5.6.1",
+		"eslint": "^5.8.0",
 		"is-natural-number": "^4.0.1",
-		"nyc": "^13.0.1",
+		"nyc": "^13.1.0",
+		"nyc-config-common": "^1.0.1",
 		"pretend-platform": "^2.0.0",
-		"puppeteer": "^1.8.0",
+		"puppeteer": "^1.10.0",
 		"tape": "^4.9.1"
 	},
 	"eslintConfig": {
-		"extends": "@shinnn/node"
+		"extends": "@shinnn"
+	},
+	"nyc": {
+		"extends": "nyc-config-common"
 	}
 }
