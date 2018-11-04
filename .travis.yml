@@ -4,6 +4,7 @@ branches:
   except: /^v\d/
 language: node_js
 node_js: node
+cache: npm
 script: npx eslint . && nyc node test.js
 after_script: node_modules/.bin/nyc report | npx coveralls
 env:
