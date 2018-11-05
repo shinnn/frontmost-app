@@ -1,6 +1,6 @@
 {
 	"name": "frontmost-app",
-	"version": "0.5.0",
+	"version": "1.0.0",
 	"description": "Get information of the frontmost app – the app that receives key events",
 	"repository": "shinnn/frontmost-app",
 	"author": "Shinnosuke Watanabe (https://github.com/shinnn)",
