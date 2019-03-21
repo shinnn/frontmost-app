@@ -1,4 +1,4 @@
-#import <AppKit/AppKit.h>
+@import AppKit;
 
 int main() {
 	NSRunningApplication *frontmostApplication = [NSWorkspace sharedWorkspace].frontmostApplication;

@@ -7,7 +7,7 @@
 	"license": "ISC",
 	"scripts": {
 		"prebuild": "eslint .",
-		"build": "clang -o frontmost-app -Os -framework AppKit frontmost-app.m",
+		"build": "clang -fmodules -o frontmost-app -Os frontmost-app.m",
 		"pretest": "npm run-script build",
 		"test": "nyc node test.js"
 	},
